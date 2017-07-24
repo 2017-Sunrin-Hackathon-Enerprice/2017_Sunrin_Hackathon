@@ -3,6 +3,7 @@ module.exports = api;
 function api(app, request) {
     app.post('/api/find', (req, res)=>{
         var find = req.param('find')
+        console.log('FIND_PARAM ====== '+find)
         apifind(find)
         function apifind(get) {
             var options = {
