@@ -15,7 +15,8 @@ var AirconSchema = mongoose.Schema({
     "모델명": {type: String},
     "제조원": {type: String},
     "정격냉방능력": {type: String},
-    "냉방기간월간소비전력량": {type: String}
+    "냉방기간월간소비전력량": {type: String},
+    "가격":{type: String}
 })
 
 var RefusSchema = mongoose.Schema({
@@ -24,7 +25,8 @@ var RefusSchema = mongoose.Schema({
     "모델명": {type: String},
     "제조원": {type: String},
     "월간소비전력량": {type: String},
-    "용량": {type: String}
+    "용량": {type: String},
+    "가격": {type: String}
 })
 
 var TvSchema = mongoose.Schema({
@@ -34,7 +36,8 @@ var TvSchema = mongoose.Schema({
     "제조원": {type: String},
     "화면대각선길이": {type: String},
     "디스플레이방식": {type: String},
-    "소비전력": {type: String}
+    "소비전력": {type: String},
+    "가격":{type: String}
 })
 
 

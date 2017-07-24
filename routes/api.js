@@ -2,97 +2,48 @@ module.exports = api;
 
 function api(app, request, db) {
     app.post('/api/find', (req, res)=>{
-        var apifind;
         var model = req.param('model')
-        var kind = req.param('kind')
         var option = req.param('option')
         console.log('MODEL_PARAM ====== '+model)
         console.log('OPTION ===== '+option)
-        apifind(model, option)
-        function apifind(get, option) {
+        apifindd(model, option)
+        function apifindd(model, option) {
+            var options = { method: 'GET',
+                url: 'https://openapi.naver.com/v1/search/shop.json',
+                qs: { query: model, display: '100', sort: 'sim' },
+                headers:
+                    { 'postman-token': 'd7121316-13e1-03f5-f535-56c2f0be1bd2',
+                        'cache-control': 'no-cache',
+                        'x-naver-client-secret': 'DYg9qGMbrE',
+                        'x-naver-client-id': 'mIT8ssontD1mRi0egkOu' } };
+
+            request(options, function (error, response, body) {
+                if (error) throw new Error(error);
+
+                res.send(body);
+            });
+
+            /*
             var options = { method: 'GET',
                 url: 'https://apis.daum.net/shopping/search',
                 qs:
                     { apikey: 'b332541766bce2231a8806ee04255cb5',
-                        q: get,
+                        q: model,
                         pageno: '1',
                         result: '20',
                         sort: option,
                         output: 'json' },
                 headers:
-                    { 'postman-token': '54c6e3bb-cbc5-4edd-a850-2695fe8c9d05',
+                    { 'postman-token': '4fb308e5-e522-cc99-b3d8-d01833ec931f',
                         'cache-control': 'no-cache',
                         'content-type': 'application/x-www-form-urlencoded' },
                 form: {} };
 
-            request(options, function (err, response, body) {
-                if (err) {
-                    throw new Error(err);
-                }
-                else {
-                    if(kind == 1){
-                        Aircon(model)
-                    }
-                    else if(kind == 2){
-                        Refus(model)
-                    }
-                    else if(kind == 3){
-                        TV(model)
-                    }
-                    function Aircon(model) {
-                        db.Aircon.findOne({
-                            모델명 : model
-                        }, (err, result)=>{
-                            if(err){
-                                console.log('/db/find Aircon Error')
-                                throw err
-                            }
-                            else if(result){
-                                res.send(200, result)
-                            }
-                            else {
-                                res.send(404,'Data Not Founded')
-                            }
-                        })
-                    }
-                    function Refus(model) {
-                        db.Refus.findOne({
-                            모델명 : model
-                        }, (err, result)=>{
-                            if(err){
-                                console.log('/db/find Aircon Error')
-                                throw err
-                            }
-                            else if(result){
-                                res.send(200, result)
-                            }
-                            else {
-                                res.send(404,'Data Not Founded')
-                            }
-                        })
+            request(options, function (error, response, body) {
+                if (error) throw new Error(error);
 
-                    }
-
-                    function TV(model) {
-                        db.Tv.findOne({
-                            모델명 : model
-                        }, (err, result)=>{
-                            if(err){
-                                console.log('/db/find Aircon Error')
-                                throw err
-                            }
-                            else if(result){
-                                res.send(200, result)
-                            }
-                            else {
-                                res.send(404,'Data Not Founded')
-                            }
-                        })
-
-                    }
-                }
-
-            });
+                res.send(JSON.parse(body));
+            });*/
 
         }
     })

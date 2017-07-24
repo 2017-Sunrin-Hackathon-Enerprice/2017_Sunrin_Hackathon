@@ -21,7 +21,7 @@ app.use(function (req, res, next) {
 });
 
 //require('./routes/auth')()
-//require('./routes/dataset')(fs, db)
+require('./routes/dataset')(fs, db)
 require('./routes/api')(app, request, db)
 require('./routes/find')(app, db)
 
