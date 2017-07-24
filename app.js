@@ -1,12 +1,11 @@
 var express = require('express')
 var request = require("request");
 var bodyParser = require('body-parser')
-var node_xj = require("xls-to-json");
-var passport = require('passport')
-var FacebookStrategy = require('passport-facebook')
+var fs = require('fs')
 var app = express()
 var port = process.env.PORT||3000
 var db = require('./mongo/database')
+var node_xj = require("xls-to-json");
 
 app.use(bodyParser.urlencoded({
     extended : false
@@ -20,9 +19,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-require('./routes/exel')
 require('./routes/auth')
-require('./routes/facebook')(app, db, passport, FacebookStrategy)
+//require('./routes/dataset')(fs, db)
 require('./routes/api')(app, request)
 
 app.listen(port, (err)=>{
@@ -34,3 +32,16 @@ app.listen(port, (err)=>{
     }
 })
 
+function set() {
+    node_xj({
+        input: "refus.xls",  // input xls
+        output: "refus.json", // output json
+        sheet: ""  // specific sheetname
+    }, function(err, result) {
+        if(err) {
+            console.error(err);
+        } else {
+            console.log(result);
+        }
+    });
+}

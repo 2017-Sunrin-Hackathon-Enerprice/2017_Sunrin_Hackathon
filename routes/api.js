@@ -8,22 +8,26 @@ function api(app, request) {
         console.log('OPTION ===== '+option)
         apifind(find, option)
         function apifind(get, option) {
-            var options = {
-                method: 'GET',
-                url: 'https://openapi.naver.com/v1/search/shop.json',
-                qs: {query:get, display: '20', sort: option},
+            var options = { method: 'GET',
+                url: 'https://apis.daum.net/shopping/search',
+                qs:
+                    { apikey: 'b332541766bce2231a8806ee04255cb5',
+                        q: find,
+                        pageno: '1',
+                        result: '20',
+                        sort: option,
+                        output: 'json' },
                 headers:
-                    {
-                        'postman-token': '28e26378-4016-c96e-8461-21208aa57942',
+                    { 'postman-token': '54c6e3bb-cbc5-4edd-a850-2695fe8c9d05',
                         'cache-control': 'no-cache',
-                        'x-naver-client-secret': 'DYg9qGMbrE',
-                        'x-naver-client-id': 'mIT8ssontD1mRi0egkOu'
-                    }
-            };
-            request(options, (error, response, body)=>{
+                        'content-type': 'application/x-www-form-urlencoded' },
+                form: {} };
+
+            request(options, function (error, response, body) {
                 if (error) throw new Error(error);
-                res.send(200, JSON.parse(body))
+                res.send(200, JSON.parse(body));
             });
+
         }
     })
 
