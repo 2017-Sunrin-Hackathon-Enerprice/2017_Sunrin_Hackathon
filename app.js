@@ -3,6 +3,7 @@ var request = require("request");
 var bodyParser = require('body-parser')
 var fs = require('fs')
 var app = express()
+var afterload = require('after-load')
 var port = process.env.PORT||3000
 var db = require('./mongo/database')
 var node_xj = require("xls-to-json");
@@ -19,9 +20,10 @@ app.use(function (req, res, next) {
     next();
 });
 
-require('./routes/auth')
+//require('./routes/auth')()
 //require('./routes/dataset')(fs, db)
 require('./routes/api')(app, request)
+require('./routes/find')(app, db)
 
 app.listen(port, (err)=>{
     if(err){
