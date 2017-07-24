@@ -29,12 +29,8 @@ function api(app, request) {
                     throw new Error(err);
                 }
                 else {
-                    apifind = JSON.parse(body)
-                    for (var i=0;i<apifind.length;i++){
-                        console.log(apifind.channal.item[i])
-                    }
+                    res.send(JSON.parse(body))
                 }
-
             });
 
         }
