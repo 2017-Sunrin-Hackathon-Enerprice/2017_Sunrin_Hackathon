@@ -31,7 +31,7 @@ function api(app, request) {
                 else {
                     apifind = JSON.parse(body)
                     for (var i=0;i<apifind.length;i++){
-                        console.log(apifind.channal.item[i].title.append())
+                        console.log(apifind.channal.item[i])
                     }
                 }
 
