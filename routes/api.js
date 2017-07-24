@@ -2,6 +2,7 @@ module.exports = api;
 
 function api(app, request) {
     app.post('/api/find', (req, res)=>{
+        var apifind;
         var find = req.param('find')
         var option = req.param('option')
         console.log('FIND_PARAM ====== '+find)
@@ -23,9 +24,17 @@ function api(app, request) {
                         'content-type': 'application/x-www-form-urlencoded' },
                 form: {} };
 
-            request(options, function (error, response, body) {
-                if (error) throw new Error(error);
-                res.send(200, JSON.parse(body));
+            request(options, function (err, response, body) {
+                if (err) {
+                    throw new Error(err);
+                }
+                else {
+                    apifind = JSON.parse(body)
+                    for (var i=0;i<apifind.length;i++){
+                        console.log(apifind.channal.item[i].title.append())
+                    }
+                }
+
             });
 
         }

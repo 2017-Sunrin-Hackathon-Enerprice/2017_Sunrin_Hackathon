@@ -34,10 +34,10 @@ app.listen(port, (err)=>{
 
 function set() {
     node_xj({
-        input: "refus.xls",  // input xls
-        output: "refus.json", // output json
-        sheet: ""  // specific sheetname
-    }, function(err, result) {
+        input: "refus.xls",
+        output: "refus.json",
+        sheet: ""
+    }, (err, result)=>{
         if(err) {
             console.error(err);
         } else {
