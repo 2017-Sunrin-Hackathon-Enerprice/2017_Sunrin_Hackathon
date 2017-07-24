@@ -14,14 +14,14 @@ function find(app, db) {
             TV(model)
         }
         function Aircon(model) {
-            db.Aircon.find({
+            db.Aircon.findOne({
                 모델명 : model
             }, (err, result)=>{
                 if(err){
                     console.log('/db/find Aircon Error')
                     throw err
                 }
-                else if(result[0]!=undefined){
+                else if(result){
                     res.send(200, result)
                 }
                 else {
@@ -30,14 +30,14 @@ function find(app, db) {
             })
         }
         function Refus(model) {
-            db.Refus.find({
+            db.Refus.findOne({
                 모델명 : model
             }, (err, result)=>{
                 if(err){
                     console.log('/db/find Aircon Error')
                     throw err
                 }
-                else if(result[0]!=undefined){
+                else if(result){
                     res.send(200, result)
                 }
                 else {
@@ -48,14 +48,14 @@ function find(app, db) {
         }
 
         function TV(model) {
-            db.Tv.find({
+            db.Tv.findOne({
                 모델명 : model
             }, (err, result)=>{
                 if(err){
                     console.log('/db/find Aircon Error')
                     throw err
                 }
-                else if(result[0]!=undefined){
+                else if(result){
                     res.send(200, result)
                 }
                 else {

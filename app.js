@@ -22,7 +22,7 @@ app.use(function (req, res, next) {
 
 //require('./routes/auth')()
 //require('./routes/dataset')(fs, db)
-require('./routes/api')(app, request)
+require('./routes/api')(app, request, db)
 require('./routes/find')(app, db)
 
 app.listen(port, (err)=>{
