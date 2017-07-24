@@ -15,7 +15,7 @@ function find(app, db) {
         }
         function Aircon(model) {
             db.Aircon.findOne({
-                모델명 : model
+                제조원 : model
             }, (err, result)=>{
                 if(err){
                     console.log('/db/find Aircon Error')
@@ -31,7 +31,7 @@ function find(app, db) {
         }
         function Refus(model) {
             db.Refus.findOne({
-                모델명 : model
+                제조원 : model
             }, (err, result)=>{
                 if(err){
                     console.log('/db/find Aircon Error')
@@ -49,7 +49,7 @@ function find(app, db) {
 
         function TV(model) {
             db.Tv.findOne({
-                모델명 : model
+                제조원 : model
             }, (err, result)=>{
                 if(err){
                     console.log('/db/find Aircon Error')
