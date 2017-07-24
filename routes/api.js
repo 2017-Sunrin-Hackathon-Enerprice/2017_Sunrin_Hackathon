@@ -3,13 +3,15 @@ module.exports = api;
 function api(app, request) {
     app.post('/api/find', (req, res)=>{
         var find = req.param('find')
+        var option = req.param('option')
         console.log('FIND_PARAM ====== '+find)
-        apifind(find)
-        function apifind(get) {
+        console.log('OPTION ===== '+option)
+        apifind(find, option)
+        function apifind(get, option) {
             var options = {
                 method: 'GET',
                 url: 'https://openapi.naver.com/v1/search/shop.json',
-                qs: {query:get, display: '20', sort: 'sim'},
+                qs: {query:get, display: '20', sort: option},
                 headers:
                     {
                         'postman-token': '28e26378-4016-c96e-8461-21208aa57942',
